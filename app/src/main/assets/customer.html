@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Customers|Online Transaction Portal</title>
+    <link rel="stylesheet" href="file:///android_asset/customer.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- navbar starts here  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="file:///android_asset/index.html">Online Transaction Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="file:///android_asset/index.html">Home Page </a>
+            </li>
+            <li class="nav-item  active">
+                <a class="nav-link" href="file:///android_asset/customers.html" data-toggle="modal" data-target="#sendMoney"
+                >Send Money</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.thesparksfoundationsingapore.org/" target="_blank">About
+                    TSF</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- navbar ends here  -->
+
+<div class="my-info text-center">
+
+    <h2 > Name: Jyothsna Ummadisetti</h2>
+    <h4 >Net Bank Balance: ₹<span id="myAccountBalance">100000</span></h4>
+
+    <button class="btn btn-info" data-toggle="modal" data-target="#sendMoney">Send Money</button>
+    <a class="btn btn-info" href="" data-toggle="modal" data-target="#transactionHistory">View All Transactions</a>
+</div>
+
+<!-- Modal send money -->
+<div class="modal fade" id="sendMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Money</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" id="enterName" class="form-control" placeholder="Recipient's username"
+                               aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">@email.com</span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">₹</span>
+                        </div>
+                        <input type="text" id="enterAmount" class="form-control" placeholder=" Enter Amount"
+                               aria-label="Amount (to the nearest dollar)">
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="sendMoney()" class="btn btn-success" data-dismiss="modal">Send
+                    Money</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal transaction History-->
+<div class="modal fade" id="transactionHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Transaction History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Amount (₹)</th>
+                        <th scope="col">Recipient</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transaction-history-body">
+                    <!-- Transaction history will be added here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- table  -->
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead id="table_topic">
+            <tr class="table-danger">
+                <th scope="col">Sl. No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Bank Balance(in ₹)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-light">
+                <td scope="row">1</td>
+                <td>Aakash Guptha</td>
+                <td>aakash@email.com</td>
+                <td>
+                    <p id="aakashBankBalance">55000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">2</td>
+                <td>Mani Kumpatla</td>
+                <td>mani_k@email.com</td>
+                <td>
+                    <p id="maniBankBalance">24000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">3</td>
+                <td>John Jakson</td>
+                <td>john02@email.com</td>
+                <td>
+                    <p id="JohnBankBalance">75000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">4</td>
+                <td>Maira Sunkara</td>
+                <td>maira.s@email.com</td>
+                <td>
+                    <p id="mairaBankBalance">12000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">5</td>
+                <td>Sura Tiru</td>
+                <td>sura.0w@email.com</td>
+                <td>
+                    <p id="suraBankBalance">50000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">6</td>
+                <td>Mahesh duggirala</td>
+                <td>Mahesh@email.com</td>
+                <td>
+                    <p id="MaheshBankBalance">20000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td>7</td>
+                <td>Gani Bogadula</td>
+                <td>ganibogu@email.com</td>
+                <td>
+                    <p id="ganiBankBalance">56000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">8</td>
+                <td>Kirthi Shaik</td>
+                <td>kirthi@email.com</td>
+                <td>
+                    <p id="kirthiBankBalance">35000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">9</td>
+                <td>Sravani M</td>
+                <td>sravani@email.com</td>
+                <td>
+                    <p id="sravaniBankBalance">85000</p>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td scope="row">10</td>
+                <td>Marqous K</td>
+                <td>mar@email.com</td>
+                <td>
+                    <p id="marBankBalance">50000</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+function sendMoney() {
+var enterName = document.getElementById("enterName").value;
+var enterAmount = parseInt(document.getElementById("enterAmount").value);
+var myAccountBalanceElement = document.getElementById("myAccountBalance");
+var myAccountBalance = parseInt(myAccountBalanceElement.innerText);
+
+if (isNaN(enterAmount) || enterAmount <= 0) {
+alert("Please enter a valid amount.");
+return;
+}
+
+if (enterAmount > myAccountBalance) {
+alert("Insufficient Balance.");
+} else {
+var findUserBankAccount = enterName + "BankBalance";
+var userBankBalanceElement = document.getElementById(findUserBankAccount);
+
+if (userBankBalanceElement) {
+var finalAmount = parseInt(userBankBalanceElement.innerText) + enterAmount;
+myAccountBalance -= enterAmount;
+
+myAccountBalanceElement.innerText = myAccountBalance;
+userBankBalanceElement.innerText = finalAmount;
+
+alert(`Transaction Successful!! ₹${enterAmount} is sent to ${enterName}@email.com.`);
+
+// Transaction history
+var transactionHistoryBody = document.getElementById("transaction-history-body");
+var newRow = transactionHistoryBody.insertRow(0);
+var cell1 = newRow.insertCell(0);
+var cell2 = newRow.insertCell(1);
+var cell3 = newRow.insertCell(2);
+
+cell1.innerHTML = `₹${enterAmount}`;
+cell2.innerHTML = `${enterName}@email.com`;
+cell3.innerHTML = new Date().toLocaleString();
+} else {
+alert("Recipient not found.");
+}
+}
+}
+</script>
+
+
+<script src="app.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+<script>
+    function simulateError(errorCode) {
+        var errorMessage = ' "alert"';
+        if (errorCode === 'balance_insufficient') {
+            errorMessage = 'Balance Insufficient';
+        } else if (errorCode === 'recipient_not_found') {
+            errorMessage = 'Recipient Not Found';
+        }
+        // Call the Android interface to show an error message
+        if (window.Android && window.Android.showError) {
+            window.Android.showError(errorMessage);
+        }
+        }
+    }
+</script>
+</body>
+</html>
