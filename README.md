@@ -11,7 +11,7 @@ Internship Duration - 1 Month ( JULY 2024 )
 
 Internship Type - Work from Home
 
-# Task-1 : Basic Banking System                                      
+# Task-2 : Basic Banking App                                      
 ◇ Create a simple mobile app which has the following specs.
 
 ◇ Start with creating a dummy data in database for upto 10
